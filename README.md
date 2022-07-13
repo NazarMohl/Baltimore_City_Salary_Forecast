@@ -5,9 +5,9 @@
 
 __________________________________________________________________________________________________________________ 
 
-**Author:** [Nazar Mohl](https://www.linkedin.com/in/nazar-mohl/)
----  
+## Author: [Nazar Mohl](https://www.linkedin.com/in/nazar-mohl/)  
 
+---  
 ## Background
 ---
 Baltimore is the largest city in the state of Maryland with the largest city payroll. Maryland is a fairly prosperous state with several important industries including services to the federal sector since Washington, DC, is literally next door. Also, Maryland is prominent in the medical and pharmaceutical industries. Again, proximity to federal entities is a driver to this with NIH, NIST and other sources of federal money nearby. Baltimore hosts Social Security Administration and the Centers for Medicare and Medicaid Services which in turn has brought a lot of insurance related jobs to Maryland and Baltimore particularly.  
@@ -19,24 +19,31 @@ Baltimore is the largest city in the state of Maryland with the largest city pay
 Stakeholder/Business Problem:   
 Our client is a recruiting company that is interested in analyzing employment possibilities in the state and local public sector. Specifically, in this project, we have been contracted to analyze employee employment/salary data in the City of Baltimore to see if salary growth can be predicted.  
 
+As a background, Baltimore City Mayor Brandon M. Scott was elected on the promise of "Building a Better Baltimore" ([Press Release](https://mayor.baltimorecity.gov/news/press-releases/2021-12-08-one-year-anniversary-mayor-scott-outlines-ambitious-action-plan-term)).  
+As part of his vision, he has created an interactive tool for his [Action Plan]( https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fmayor.baltimorecity.gov%2Ftracker&data=04%7C01%7CKenneth.Nischan%40baltimorecity.gov%7C318dacf66da8423b187708d9ba735fc2%7C312cb126c6ae4fc2800d318e679ce6c7%7C0%7C0%7C637745826954590218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&sdata=7u81HpdakoGFTKvseUv9V1w56FEYYjaf4j87kiBYVSo%3D&reserved=0). This Action Plan lists 5 priorities of which the first listed priority is “Building Public Safety”. 3 of the 4 top listed “Primary Agencies” for this priority are:  
+- Baltimore Police Department  
+- Baltimore City Fire Department  
+- Baltimore City Health Department  
+
 ---  
 ## Data understanding  
 ---
-Baltimore City Mayor Brandon M. Scott  was elected on the promise of "Building a Better Baltimore" ([Press Release](https://mayor.baltimorecity.gov/news/press-releases/2021-12-08-one-year-anniversary-mayor-scott-outlines-ambitious-action-plan-term)).  
-As part of his vision, he has created an interactive tool for his [Action Plan]( https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fmayor.baltimorecity.gov%2Ftracker&data=04%7C01%7CKenneth.Nischan%40baltimorecity.gov%7C318dacf66da8423b187708d9ba735fc2%7C312cb126c6ae4fc2800d318e679ce6c7%7C0%7C0%7C637745826954590218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&sdata=7u81HpdakoGFTKvseUv9V1w56FEYYjaf4j87kiBYVSo%3D&reserved=0). This Action Plan lists 5 priorities of which the first listed priority is “ Building Public Safety”. 3 of the 4  top listed “Primary Agencies” for this priority are:  
--Baltimore Police Department  
--Baltimore City Fire Department  
--Baltimore City Health Department  
-With over 63 departments in the city, we decided to focus on these 3 departments concerned with public safety: Police, Fire and Health departments.  These are also among the largest departments (agencies).  
+
 Baltimore publishes salary data at this URL: [Baltimore City Employee Salaries](https://data.baltimorecity.gov/datasets/baltimore::baltimore-city-employee-salaries/explore?showTable=true).  
+
+With over 63 departments in the city, we decided to focus on the 3 departments concerned with public safety: Police, Fire and Health departments.  These are also among the largest departments (agencies).  
+
 This dataset includes Baltimore City employee salaries and gross pay from fiscal year 2011 through last fiscal year and includes employees who were employed on June 30 of the last fiscal year.
 (Fiscal Year is from July 1 to June 30).  
-Each of the roughly 154K rows represents the salary record of one employee in one year. So, an individual who continued to work from 2012 to 2015 would have 4 records in the data set - one for each year of employment.  
-The record provides full name, job classification, department, hire date, annual salary as well as gross pay among other information. We focused on salary because it is a consistent number to go with a job classification as opposed to gross pay which may include other deductions.
+
+Each of the roughly 154K rows represents the salary record of one employee in one year. So, an individual who continued to work from 2012 to 2015 would have 4 records in the data set - one for each year of employment. Over the 11 years, we have 14,179 unique employees.  
 
 ---
 ## Data Preparation  
 ---
+
+The record provides full name, job classification, department, hire date, annual salary as well as gross pay among other information. We focused on salary because it is a consistent number to go with a job classification as opposed to gross pay which may include other deductions.
+
 Data was “cleaned” by removing records with null fields or filling null fields with substituted values.  
 We sliced/diced dataset by agencies, years, job titles, etc.  
 We calculated totals and means of salaries across each department for each year. We used new DataFrames to hold this information and to use in our models. We charted as appropriate and as shown below.  
@@ -135,7 +142,8 @@ See our GitHub repository [here](https://github.com/NazarMohl/Baltimore_City_Sal
 ├──README.md
 ├──Baltimore_City_Employee_Salaries_Analysis.ipynb
 ├──data
-   ├──Original CSV files
+   ├──Original CSV file
+   ├──Derived Excel file
 ├──images
    ├──Charts and graphics used in README file.
 
