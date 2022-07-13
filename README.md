@@ -22,20 +22,24 @@ Our client is a recruiting company that is interested in analyzing employment po
 ---  
 ## Data understanding  
 ---
-
-Baltimore publishes salary data at this URL:  [Baltimore City Employee Salaries](https://data.baltimorecity.gov/datasets/baltimore::baltimore-city-employee-salaries/explore?showTable=true)  
+Baltimore City Mayor Brandon M. Scott  was elected on the promise of "Building a Better Baltimore" ([Press Release](https://mayor.baltimorecity.gov/news/press-releases/2021-12-08-one-year-anniversary-mayor-scott-outlines-ambitious-action-plan-term)).  
+As part of his vision, he has created an interactive tool for his [Action Plan]( https://gcc02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fmayor.baltimorecity.gov%2Ftracker&data=04%7C01%7CKenneth.Nischan%40baltimorecity.gov%7C318dacf66da8423b187708d9ba735fc2%7C312cb126c6ae4fc2800d318e679ce6c7%7C0%7C0%7C637745826954590218%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&sdata=7u81HpdakoGFTKvseUv9V1w56FEYYjaf4j87kiBYVSo%3D&reserved=0). This Action Plan lists 5 priorities of which the first listed priority is “ Building Public Safety”. 3 of the 4  top listed “Primary Agencies” for this priority are:  
+-Baltimore Police Department  
+-Baltimore City Fire Department  
+-Baltimore City Health Department  
+With over 63 departments in the city, we decided to focus on these 3 departments concerned with public safety: Police, Fire and Health departments.  These are also among the largest departments (agencies).  
+Baltimore publishes salary data at this URL: [Baltimore City Employee Salaries](https://data.baltimorecity.gov/datasets/baltimore::baltimore-city-employee-salaries/explore?showTable=true).  
 This dataset includes Baltimore City employee salaries and gross pay from fiscal year 2011 through last fiscal year and includes employees who were employed on June 30 of the last fiscal year.
 (Fiscal Year is from July 1 to June 30).  
-Each of the roughly 154K rows represents the salary record of one employee in one year. So an individual who continued to work from 2012 to 2015 would have 4 records in the data set - one for each year of employment.  
-The record provides full name, job classification, deparment, hire date, annual salary as well as gross pay among other information. We focused on salary because it is a consistent number to go with a job classification as opposed to gross pay which may include other deductions.
+Each of the roughly 154K rows represents the salary record of one employee in one year. So, an individual who continued to work from 2012 to 2015 would have 4 records in the data set - one for each year of employment.  
+The record provides full name, job classification, department, hire date, annual salary as well as gross pay among other information. We focused on salary because it is a consistent number to go with a job classification as opposed to gross pay which may include other deductions.
 
 ---
 ## Data Preparation  
 ---
-Data  was “cleaned” by removing records with null fields or filling null fields with substituted values. 
-With over 63 departments in the city, we decided to focus on the 3 largest deparments concerned with public security: Police, Fire and Health deparments.  
-Therefore, we sliced/diced dataset by agencies, years, job titles, etc.  
-We calculated totals and means of salaries across each department for each year. We used new dataframes to hold this information and to use in our models. We charted as appropriate and as shown below.
+Data was “cleaned” by removing records with null fields or filling null fields with substituted values.  
+We sliced/diced dataset by agencies, years, job titles, etc.  
+We calculated totals and means of salaries across each department for each year. We used new DataFrames to hold this information and to use in our models. We charted as appropriate and as shown below.  
 
 ---
 ## Data Analysis  
@@ -50,14 +54,14 @@ Note that there is a general upward trend but there are some years where the pay
 ![Department Payroll Totals](./images/Department_Payroll_Totals(Line).jpg)  
 Covid Impact?  
 
-The line chart shows more clearly the year to year fluctuations of the payroll. Particularly, the last 2 years show that the rise in payrolls for the fire and police departments flattened out and even dropped. However, the health department budget, which had been fairly flat for most of the previous decade, grew more sharply.  
-COuld it be that parts of the police and fire budgets were diverted to the health department due to the Covid pandemic crisis?  
+The line chart shows more clearly the year-to-year fluctuations of the payroll. Particularly, the last 2 years show that the rise in payrolls for the fire and police departments flattened out and even dropped. However, the health department budget, which had been fairly flat for most of the previous decade, grew more sharply.  
+Could it be that parts of the police and fire budgets were diverted to the health department due to the Covid pandemic crisis?  
 
 In the chart below, we look at the average salary across each department and there is an unexpected observation.
-![Department Salary Means](./images/Department_Average_Salary(Line).jpg) 
+![Department Salary Means](./images/Department_Average_Salary(Line).jpg)  
  Health Salaries Declined?
 
-The average Police department salary stayed flat. The fire department whose budget had dropped actually shows the average salary increased. Conversely, the health department whose payroll had increased shows a decrease in average salary. Perhaps, this due to an influx of employees whose salary is lower than the average as a lot of technician level work was needed to handle vaccine drives, etc. The reasons for this can be investigated separately with a view to better understand the dynamics of this job market.  
+The average Police department salary stayed flat. The fire department, whose budget had dropped, actually shows the average salary increased. Conversely, the health department, whose payroll had increased, shows a decrease in average salary. Perhaps, this is due to an influx of employees whose salary is lower than the average as a lot of technician level work was needed to handle vaccine drives, etc. The reasons for this can be investigated separately with a view to better understand the dynamics of this job market.  
 
 ---
 ## Modeling Process / Evaluation metrics  
@@ -88,7 +92,7 @@ We applied ARIMA model initially with 1 difference and no lags - (0,1,0). We the
 ---
 ## Model Results
 ---
-Both the Naive Model with Shift of 1 and the ARIMA (0,1,0) models generated very close values that seemed to indicate good predictions. However, both the shift of 1 and the differencing of 1 models indicate that the prediction at any time is very close to the value at the immediately preceding time. Since the last 2 years of payroll data showed very little movement, the predictions of these models appear to be very good - a few hundred dollars different from the actual payroll value. However, this data is a Random Walk dataset and is not condusive to making a good prediction.  
+Both the *Naive Model with Shift of 1* and the *ARIMA (0,1,0)* models generated very close values that seemed to indicate good predictions. However, both the shift of 1 and the differencing of 1 models indicate that the prediction at any time is very close to the value at the immediately preceding time. Since the last 2 years of payroll data showed very little movement, the predictions of these models appear to be very good - a few hundred dollars different from the actual payroll value. However, this data is a Random Walk dataset and is not conducive to making a good prediction.  
 
 ---
 ## Conclusions  
